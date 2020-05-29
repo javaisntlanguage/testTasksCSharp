@@ -32,7 +32,7 @@ namespace task3
                             for(int j=0;j<words.Length;j++)
                             {
                                 //задаем правильный тип и заменяем символы '_' на пробел
-                                wordsAnyType[j] = TryParse(words[j].Replace('_',' '));
+                                wordsAnyType[j] = Parser.TryParse(words[j].Replace('_',' '));
                                 //если не заголовок и не номер, то выводим с типом
                                 if (i != 0 && j != 0) 
                                 { 
@@ -70,37 +70,6 @@ namespace task3
             {
                 Console.WriteLine(e.Message);
             }
-        }
-
-        //финкция определения наименьшего типа 
-        static dynamic TryParse(string str)
-        {
-            sbyte sByte = 0;
-            short Short = 0;
-            int Int = 0;
-            double Double = 0;
-            long Long = 0;
-            if(sbyte.TryParse(str,out sByte))
-            {
-                return sByte;
-            }
-            else if(short.TryParse(str,out Short))
-            {
-                return Short;
-            }
-            else if(int.TryParse(str,out Int))
-            {
-                return Int;
-            }
-            else if (long.TryParse(str, out Long))
-            {
-                return Long;
-            }
-            else if(double.TryParse(str,out Double))
-            {
-                return Double;
-            }
-            return str;
         }
     }
 }
