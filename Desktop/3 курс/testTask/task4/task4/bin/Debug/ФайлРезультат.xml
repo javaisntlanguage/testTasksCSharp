@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="windows-1251" standalone="yes"?>
+<RootXml>
+  <SchemaVersion Number="2">
+    <Period Date="2014-02-06">
+      <Source ClassCode="ДМС" Code="819">
+        <Form Code="178" Name="Счета в кредитных организациях" Status="0">
+          <Column Num="1" Name="Номер банковского (лицевого) счета" />
+          <Column Num="2" Name="остаток средств на счете на начало года" />
+          <Column Num="3" Name="средства в пути на начало года" />
+          <Column Num="4" Name="остаток средств на счете на конец года" />
+          <Column Num="5" Name="средства в пути на конец года" />
+          <Document ПлСч11="120111000">
+            <Data СТРОКА="001">
+              <Px Num="1" Value="Федеральные" />
+              <Px Num="2" Value="4590" />
+              <Px Num="3" Value="45" />
+              <Px Num="4" Value="67" />
+              <Px Num="5" Value="110" />
+            </Data>
+          </Document>
+          <Document ПлСч11="120111000">
+            <Data СТРОКА="002">
+              <Px Num="1" Value="Областные" />
+              <Px Num="2" Value="3" />
+              <Px Num="3" Value="2" />
+              <Px Num="4" Value="23" />
+              <Px Num="5" Value="347" />
+            </Data>
+          </Document>
+          <Document ПлСч11="120111000">
+            <Data СТРОКА="003">
+              <Px Num="1" Value="Доп. финансирование" />
+              <Px Num="2" Value="3490" />
+              <Px Num="3" Value="4" />
+              <Px Num="4" Value="87" />
+              <Px Num="5" Value="1" />
+            </Data>
+          </Document>
+          <Document ПлСч11="120121000">
+            <Data СТРОКА="004">
+              <Px Num="1" Value="Федеральные" />
+              <Px Num="2" Value="123" />
+              <Px Num="3" Value="4" />
+              <Px Num="4" Value="678" />
+              <Px Num="5" Value="120" />
+            </Data>
+          </Document>
+          <Document ПлСч11="120122000">
+            <Data СТРОКА="005">
+              <Px Num="1" Value="Федеральные" />
+              <Px Num="2" Value="0" />
+              <Px Num="3" Value="445" />
+              <Px Num="4" Value="0" />
+              <Px Num="5" Value="24" />
+            </Data>
+          </Document>
+          <Document ПлСч11="120122000">
+            <Data СТРОКА="006">
+              <Px Num="1" Value="Доп. финансирование" />
+              <Px Num="2" Value="7899" />
+              <Px Num="3" Value="1" />
+              <Px Num="4" Value="78" />
+              <Px Num="5" Value="89" />
+            </Data>
+          </Document>
+          <Document ПлСч11="120122000">
+            <Data СТРОКА="007">
+              <Px Num="1" Value="Областные" />
+              <Px Num="2" Value="6" />
+              <Px Num="3" Value="7" />
+              <Px Num="4" Value="0" />
+              <Px Num="5" Value="5" />
+            </Data>
+          </Document>
+        </Form>
+      </Source>
+    </Period>
+  </SchemaVersion>
+</RootXml>
