@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Excel = Microsoft.Office.Interop.Excel;
 using System.IO;
 using System.Xml.Linq;
 using System.Xml.XPath;
-using System.Diagnostics;
+using System.Globalization;
 
 namespace task4
 {
@@ -37,7 +35,7 @@ namespace task4
             };
 
             Console.WriteLine("Создаем шапку XML");
-            var document = new XDocument(new XDeclaration("1.0", "windows-1251","yes"),
+            var document = new XDocument(new XDeclaration("1.0", "windows-1251",null),
                new XElement("RootXml",
                     new XElement("SchemaVersion",
                         new XAttribute("Number", "2"),
@@ -58,7 +56,6 @@ namespace task4
                   
                )
             );
-            
             Console.WriteLine("заполняем XML");
             for (int i = 0; i < titles.Length; i++)
             {
@@ -69,37 +66,56 @@ namespace task4
                     )
                 );
             }
-            for (int i = 5; i <= last.Row; i++)
+            var secondColumnDistinct = new List<string>();
+            var secondColumn = new List<string>();
+            var SumColumns = new Dictionary<string, double[]>();
+            var culture = CultureInfo.CreateSpecificCulture("en-US");
+            for (int i=5;i<=last.Row;i++)
             {
-                
-                string secondColumn = range[i, 2].Value.ToString();
-                document.XPathSelectElement("./RootXml/SchemaVersion/Period/Source/Form").Add(
+                //записываем номер строки в трехзначном формате
+                string billAcc = $"1{range[i, 2].Value.ToString().Substring(0, range[i, 2].Value.ToString().Length - 3)}000";
+                if (!secondColumnDistinct.Contains(billAcc))
+                {
+                    secondColumnDistinct.Add(billAcc);
+                    document.XPathSelectElement("./RootXml/SchemaVersion/Period/Source/Form").Add(
                     new XElement("Document",
                     //ко второму столбцу добавляем единицу в начало и обнуляем последние 3 разряда числа
-                        new XAttribute("ПлСч11", $"1{secondColumn.Substring(0,secondColumn.Length-3)}000"),
-                        new XElement("Data",
-                            //записываем номер строки в трехзначном формате
-                            new XAttribute("СТРОКА", (i-4).ToString("D3"))
-                        )
+                        new XAttribute("ПлСч11", billAcc)
+                    ));
+                }
+                secondColumn.Add(billAcc);
+                string billAccCount = secondColumn.Count(c => c == billAcc).ToString("D3");
+                document.XPathSelectElement($"./RootXml/SchemaVersion/Period/Source/Form/Document[@ПлСч11={billAcc}]").Add(
+                    new XElement("Data",
+                        new XAttribute("СТРОКА", billAccCount)
                     )
                 );
+                if(!SumColumns.ContainsKey(billAcc))
+                {
+                    SumColumns[billAcc] = new double[4];
+                }
                 for (int j = 1; j <= last.Column; j++)
-                {       
+                {
 
                     if (j != 2)
                     {
                         if (j >= 3)
                         {
-                            document.XPathSelectElement($"./RootXml/SchemaVersion/Period/Source/Form/Document/Data[@СТРОКА='{(i - 4).ToString("D3")}']").Add(
+                            SumColumns[billAcc][j-3] += range[i, j].Value;
+                            document.XPathSelectElement($"./RootXml/SchemaVersion/Period/Source/Form/" +
+                                $"Document[@ПлСч11={billAcc}]/" +
+                                $"Data[@СТРОКА='{billAccCount}']").Add(
                         new XElement("Px",
-                            new XAttribute("Num", j-1),
-                            new XAttribute("Value", range[i, j].Value.ToString())
+                            new XAttribute("Num", j - 1),
+                            new XAttribute("Value", range[i, j].Value.ToString("F",culture))
                             )
                         );
                         }
                         else
                         {
-                            document.XPathSelectElement($"./RootXml/SchemaVersion/Period/Source/Form/Document/Data[@СТРОКА='{(i - 4).ToString("D3")}']").Add(
+                            document.XPathSelectElement($"./RootXml/SchemaVersion/Period/Source/Form/" +
+                                $"Document[@ПлСч11={billAcc}]/" +
+                                $"Data[@СТРОКА='{billAccCount}']").Add(
                             new XElement("Px",
                                 new XAttribute("Num", j),
                                 new XAttribute("Value", range[i, j].Value.ToString())
@@ -107,6 +123,26 @@ namespace task4
                             );
                         }
                     }
+                }
+            }
+            //добавляем итоговые суммы числовых столбцов
+            foreach (var billAcc in secondColumnDistinct)
+            {
+                document.XPathSelectElement($"./RootXml/SchemaVersion/Period/Source/Form/" +
+                    $"Document[@ПлСч11={billAcc}]").Add(
+                    new XElement("Data",
+                        new XAttribute("СТРОКА", "960")
+                    )
+                );
+                for(int j=0;j<4;j++)
+                {
+                    document.XPathSelectElement($"./RootXml/SchemaVersion/Period/Source/Form/" +
+                    $"Document[@ПлСч11={billAcc}]/Data[@СТРОКА=960]").Add(
+                        new XElement("Px",
+                                new XAttribute("Num", j+2),
+                                new XAttribute("Value", SumColumns[billAcc][j].ToString("F", culture))
+                                )
+                    );
                 }
             }
             Console.WriteLine("Сохраняем XML и закрываем EXCEL");

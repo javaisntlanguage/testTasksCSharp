@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="windows-1251" standalone="yes"?>
+<?xml version="1.0" encoding="windows-1251"?>
 <RootXml>
   <SchemaVersion Number="2">
     <Period Date="2014-02-06">
@@ -12,64 +12,74 @@
           <Document ПлСч11="120111000">
             <Data СТРОКА="001">
               <Px Num="1" Value="Федеральные" />
-              <Px Num="2" Value="4590" />
-              <Px Num="3" Value="45" />
-              <Px Num="4" Value="67" />
-              <Px Num="5" Value="110" />
+              <Px Num="2" Value="4590.00" />
+              <Px Num="3" Value="45.00" />
+              <Px Num="4" Value="67.00" />
+              <Px Num="5" Value="110.00" />
             </Data>
-          </Document>
-          <Document ПлСч11="120111000">
             <Data СТРОКА="002">
               <Px Num="1" Value="Областные" />
-              <Px Num="2" Value="3" />
-              <Px Num="3" Value="2" />
-              <Px Num="4" Value="23" />
-              <Px Num="5" Value="347" />
+              <Px Num="2" Value="3.00" />
+              <Px Num="3" Value="2.00" />
+              <Px Num="4" Value="23.00" />
+              <Px Num="5" Value="347.00" />
             </Data>
-          </Document>
-          <Document ПлСч11="120111000">
             <Data СТРОКА="003">
               <Px Num="1" Value="Доп. финансирование" />
-              <Px Num="2" Value="3490" />
-              <Px Num="3" Value="4" />
-              <Px Num="4" Value="87" />
-              <Px Num="5" Value="1" />
+              <Px Num="2" Value="3490.00" />
+              <Px Num="3" Value="4.00" />
+              <Px Num="4" Value="87.00" />
+              <Px Num="5" Value="1.00" />
+            </Data>
+            <Data СТРОКА="960">
+              <Px Num="2" Value="8083.00" />
+              <Px Num="3" Value="51.00" />
+              <Px Num="4" Value="177.00" />
+              <Px Num="5" Value="458.00" />
             </Data>
           </Document>
           <Document ПлСч11="120121000">
-            <Data СТРОКА="004">
+            <Data СТРОКА="001">
               <Px Num="1" Value="Федеральные" />
-              <Px Num="2" Value="123" />
-              <Px Num="3" Value="4" />
-              <Px Num="4" Value="678" />
-              <Px Num="5" Value="120" />
+              <Px Num="2" Value="123.00" />
+              <Px Num="3" Value="4.00" />
+              <Px Num="4" Value="678.00" />
+              <Px Num="5" Value="120.00" />
+            </Data>
+            <Data СТРОКА="960">
+              <Px Num="2" Value="123.00" />
+              <Px Num="3" Value="4.00" />
+              <Px Num="4" Value="678.00" />
+              <Px Num="5" Value="120.00" />
             </Data>
           </Document>
           <Document ПлСч11="120122000">
-            <Data СТРОКА="005">
+            <Data СТРОКА="001">
               <Px Num="1" Value="Федеральные" />
-              <Px Num="2" Value="0" />
-              <Px Num="3" Value="445" />
-              <Px Num="4" Value="0" />
-              <Px Num="5" Value="24" />
+              <Px Num="2" Value="0.00" />
+              <Px Num="3" Value="445.00" />
+              <Px Num="4" Value="0.00" />
+              <Px Num="5" Value="24.00" />
             </Data>
-          </Document>
-          <Document ПлСч11="120122000">
-            <Data СТРОКА="006">
+            <Data СТРОКА="002">
               <Px Num="1" Value="Доп. финансирование" />
-              <Px Num="2" Value="7899" />
-              <Px Num="3" Value="1" />
-              <Px Num="4" Value="78" />
-              <Px Num="5" Value="89" />
+              <Px Num="2" Value="7899.00" />
+              <Px Num="3" Value="1.00" />
+              <Px Num="4" Value="78.00" />
+              <Px Num="5" Value="89.00" />
             </Data>
-          </Document>
-          <Document ПлСч11="120122000">
-            <Data СТРОКА="007">
+            <Data СТРОКА="003">
               <Px Num="1" Value="Областные" />
-              <Px Num="2" Value="6" />
-              <Px Num="3" Value="7" />
-              <Px Num="4" Value="0" />
-              <Px Num="5" Value="5" />
+              <Px Num="2" Value="6.00" />
+              <Px Num="3" Value="7.00" />
+              <Px Num="4" Value="0.00" />
+              <Px Num="5" Value="5.00" />
+            </Data>
+            <Data СТРОКА="960">
+              <Px Num="2" Value="7905.00" />
+              <Px Num="3" Value="453.00" />
+              <Px Num="4" Value="78.00" />
+              <Px Num="5" Value="118.00" />
             </Data>
           </Document>
         </Form>
